@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Crime in India</title>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+  <svg width="800" height="600"></svg>
+  <script>
+    // Load the data
+    d3.csv("data.csv", function(data) {
+
+      // Create a scale for the x-axis
+      var xScale = d3.scaleLinear()
+        .domain([0, d3.max(data, function(d) { return +d.count; })])
+        .range([0, 700]);
+
+      // Create a scale for the y-axis
+      var yScale = d3.scaleBand()
+        .domain(data.map(function(d) { return d.crime; }))
+        .range([0, 500])
+        .padding(0.1);
+
+      // Create the bars
+      d3.select("svg")
+        .selectAll("rect")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("x", 100)
+        .attr("y", function(d) { return yScale(d.crime); })
+        .attr("width", function(d) { return xScale(+d.count); })
+        .attr("height", yScale.bandwidth())
+        .attr("fill", "steelblue");
+
+      // Add the x-axis
+      d3.select("svg")
+        .append("g")
+        .attr("transform", "translate(100, 500)")
+        .call(d3.axisBottom(xScale));
+
+      // Add the y-axis
+      d3.select("svg")
+        .append("g")
+        .attr("transform", "translate(100, 0)")
+        .call(d3.axisLeft(yScale));
+
+      // Add a title
+      d3.select("svg")
+        .append("text")
+        .attr("x", 400)
+        .attr("y", 50)
+        .attr("text-anchor", "middle")
+        .style("font-size", "24px")
+        .text("Crime in India");
+    });
+  </script>
+</body>
+</html>
