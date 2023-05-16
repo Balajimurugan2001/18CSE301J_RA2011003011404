@@ -1,11 +1,11 @@
 const data = [
-    { name: 'John', score: 80 },
-    { name: 'Simon', score: 76 },
-    { name: 'Samantha', score: 90 },
-    { name: 'Patrick', score: 82 },
-    { name: 'Mary', score: 90 },
-    { name: 'Christina', score: 75 },
-    { name: 'Michael', score: 86 },
+    { name: 'Jai', score: 80 },
+    { name: 'Alex', score: 76 },
+    { name: 'Sam', score: 90 },
+    { name: 'Tom', score: 82 },
+    { name: 'Max', score: 90 },
+    { name: 'Ben', score: 75 },
+    { name: 'Mike', score: 86 },
   ];
   
   const width = 900;
